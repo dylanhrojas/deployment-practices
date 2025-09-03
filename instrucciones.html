@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prácticas de Despliegue en Google Cloud</title>
+    <style>
+        :root {
+            --primary-color: #4285F4;
+            --secondary-color: #34A853;
+            --accent-color: #EA4335;
+            --background-color: #F8F9FA;
+            --text-color: #202124;
+            --card-background: #FFFFFF;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+        }
+        
+        .practice-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .duration {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .team-section {
+            background-color: #E8F0FE;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .steps {
+            margin: 1.5rem 0;
+        }
+        
+        .step {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .resources {
+            background-color: #E6F4EA;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .resources ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .evaluation {
+            background-color: #FCE8E6;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .timeline {
+            display: flex;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            padding-bottom: 1rem;
+        }
+        
+        .milestone {
+            flex: 0 0 auto;
+            width: 200px;
+            background-color: var(--card-background);
+            padding: 1rem;
+            margin-right: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .milestone h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .practice-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                flex-direction: column;
+            }
+            
+            .milestone {
+                width: auto;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prácticas de Despliegue en Google Cloud</h1>
+        <p>Para equipos de 4 estudiantes - Aplicaciones Web en la Nube</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introducción</h2>
+        <p>Estas tres prácticas están diseñadas para que equipos de 4 estudiantes aprendan a desplegar aplicaciones web en Google Cloud Platform. Cada práctica aumenta en complejidad y abarca diferentes servicios de GCP.</p>
+        
+        <div class="team-section">
+            <h3>Organización de Equipos (4 personas)</h3>
+            <p>Cada equipo debe asignar los siguientes roles para un trabajo eficiente:</p>
+            <ul>
+                <li><strong>Líder de Proyecto:</strong> Coordina las tareas, plazos y comunicación</li>
+                <li><strong>Arquitecto Cloud:</strong> Diseña la infraestructura en GCP</li>
+                <li><strong>Desarrollador Backend:</strong> Implementa la lógica de la aplicación</li>
+                <li><strong>Desarrollador Frontend/DevOps:</strong> Desarrolla la interfaz y automatiza despliegues</li>
+            </ul>
+        </div>
+        
+        <h2>Prácticas</h2>
+        <div class="practice-cards">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Práctica 1: Sitio Estático con Cloud Storage</h3>
+                    <span class="duration">semana 5</span>
+                </div>
+                <p>Despliegue de un sitio web estático utilizando Google Cloud Storage y Cloud CDN.</p>
+                <p><strong>Tecnologías:</strong> HTML, CSS, JavaScript, Google Cloud Storage, Cloud CDN</p>
+                <div class="steps">
+                    <h4>Pasos principales:</h4>
+                    <div class="step">Crear un bucket en Cloud Storage</div>
+                    <div class="step">Configurar permisos de acceso público</div>
+                    <div class="step>Subir archivos estáticos y configurar la página principal</div>
+                    <div class="step">Habilitar Cloud CDN para mejorar el rendimiento</div>
+                    <div class="step">Configurar un dominio personalizado (opcional)</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Práctica 2: Aplicación con App Engine</h3>
+                    <span class="duration">semana 6</span>
+                </div>
+                <p>Despliegue de una aplicación web dinámica utilizando Google App Engine con base de datos Firestore.</p>
+                <p><strong>Tecnologías:</strong> Python/Node.js, Google App Engine, Firestore, APIs</p>
+                <div class="steps">
+                    <h4>Pasos principales:</h4>
+                    <div class="step">Desarrollar una aplicación web simple (lista de tareas o blog)</div>
+                    <div class="step">Configurar app.yaml para App Engine</div>
+                    <div class="step">Implementar base de datos Firestore</div>
+                    <div class="step">Desplegar en App Engine con gcloud CLI</div>
+                    <div class="step">Configurar dominio y SSL</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Práctica 3: Aplicación con Kubernetes</h3>
+                    <span class="duration">semana 7-8</span>
+                </div>
+                <p>Despliegue de una aplicación contenerizada utilizando Google Kubernetes Engine (GKE) con CI/CD.</p>
+                <p><strong>Tecnologías:</strong> Docker, Kubernetes, Google Kubernetes Engine, Cloud Build</p>
+                <div class="steps">
+                    <h4>Pasos principales:</h4>
+                    <div class="step">Crear contenedores Docker para la aplicación</div>
+                    <div class="step">Configurar un cluster de GKE</div>
+                    <div class="step">Desplegar aplicación en Kubernetes</div>
+                    <div class="step">Configurar CI/CD con Cloud Build</div>
+                    <div class="step">Implementar monitoreo con Cloud Monitoring</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Práctica 1: Sitio Estático con Cloud Storage (Detalle)</h2>
+        <div class="timeline">
+            <div class="milestone">
+                <h4>Semana 5 - Día 1-2</h4>
+                <p>Configuración inicial de GCP: Crear proyecto, habilitar APIs necesarias, configurar facturación.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 6 - Día 3-4</h4>
+                <p>Desarrollo del sitio estático: Crear HTML, CSS y JavaScript para un sitio de portfolio personal.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 7  - Día 1-2</h4>
+                <p>Crear bucket en Cloud Storage y configurar para hospedaje web.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 8 - Día 3-4</h4>
+                <p>Subir archivos, configurar CDN y probar el sitio desplegado.</p>
+            </div>
+        </div>
+        
+        <div class="resources">
+            <h3>Recursos para la Práctica 1</h3>
+            <ul>
+                <li><a href="https://cloud.google.com/storage?utm_source=google&utm_medium=cpc&utm_campaign=latam-MX-all-es-dr-SKWS-all-all-trial-b-dr-1710136-LUAC0020235&utm_content=text-ad-none-any-DEV_c-CRE_654757057088-ADGP_Hybrid+%7C+SKWS+-+BRO+%7C+Txt_Storage-Cloud+Storage-KWID_43700076071342420-kwd-4642545472&utm_term=KW_cloud+storage-ST_cloud+storage&gclsrc=aw.ds&gad_source=1&gad_campaignid=19960196322&gclid=Cj0KCQjwzt_FBhCEARIsAJGFWVktuAq29gcIy4JzT-dGQOwaqsM0XWQfFxBr9RPHzErwnDmAmcPZZ34aAkk-EALw_wcB&hl=es_419">Documentación oficial: Hospedaje web en Cloud Storage</a></li>
+                <li><a href="https://cloud.google.com/storage/docs/hosting-static-website?hl=es-419">Tutorial: Crear tu primer sitio en GCS</a></li>
+                <li><a href="https://teleporthq.io/static-website-templates">Plantilla de sitio web estático</a></li>
+                <li><a href="https://www.youtube.com/watch?v=ftocllBHpe0&t=39s">Video: Configurar Cloud CDN</a></li>
+            </ul>
+        </div>
+        
+        <div class="evaluation">
+            <h3>Criterios de Evaluación - Práctica 1</h3>
+            <ul>
+                <li>Sitio web accesible públicamente (20%)</li>
+                <li>Configuración correcta de permisos (20%)</li>
+                <li>Uso de Cloud CDN para entrega de contenido (20%)</li>
+                <li>Calidad del código y diseño (20%)</li>
+                <li>Documentación del proceso (20%)</li>
+            </ul>
+        </div>
+        
+        <h2>Práctica 2: Aplicación con App Engine (Detalle)</h2>
+        <div class="timeline">
+            <div class="milestone">
+                <h4>Semana 1</h4>
+                <p>Desarrollo de la aplicación: Crear una aplicación web con funcionalidad CRUD.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 2 - Día 1-2</h4>
+                <p>Configuración de Firestore: Diseñar la estructura de datos e implementar operaciones.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 2 - Día 3-4</h4>
+                <p>Preparar app.yaml y pruebas locales con el emulador.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 3</h4>
+                <p>Despliegue en App Engine y configuración de dominio personalizado.</p>
+            </div>
+        </div>
+        
+        <div class="resources">
+            <h3>Recursos para la Práctica 2</h3>
+            <ul>
+                <li><a href="#">Documentación: Google App Engine</a></li>
+                <li><a href="#">Tutorial: App Engine con Python</a></li>
+                <li><a href="#">Guía: Uso de Firestore</a></li>
+                <li><a href="#">Ejemplo de app.yaml</a></li>
+            </ul>
+        </div>
+        
+        <div class="evaluation">
+            <h3>Criterios de Evaluación - Práctica 2</h3>
+            <ul>
+                <li>Aplicación desplegada y funcional (25%)</li>
+                <li>Operaciones CRUD con Firestore (25%)</li>
+                <li>Configuración correcta de app.yaml (20%)</li>
+                <li>Manejo de errores y validación (15%)</li>
+                <li>Documentación y presentación (15%)</li>
+            </ul>
+        </div>
+        
+        <h2>Práctica 3: Aplicación con Kubernetes (Detalle)</h2>
+        <div class="timeline">
+            <div class="milestone">
+                <h4>Semana 1</h4>
+                <p>Dockerizar la aplicación: Crear Dockerfile y construir imágenes.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 2 - Día 1-2</h4>
+                <p>Configurar cluster GKE: Crear cluster, configurar nodos y permisos.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 2 - Día 3-4</h4>
+                <p>Desplegar aplicación: Crear deployments, servicios y configmaps.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 3</h4>
+                <p>Implementar CI/CD: Configurar Cloud Build para automatizar despliegues.</p>
+            </div>
+            <div class="milestone">
+                <h4>Semana 4</h4>
+                <p>Monitoreo y ajustes: Configurar Cloud Monitoring y optimizar recursos.</p>
+            </div>
+        </div>
+        
+        <div class="resources">
+            <h3>Recursos para la Práctica 3</h3>
+            <ul>
+                <li><a href="#">Documentación: Google Kubernetes Engine</a></li>
+                <li><a href="#">Tutorial: Primeros pasos con GKE</a></li>
+                <li><a href="#">Guía: Cloud Build para CI/CD</a></li>
+                <li><a href="#">Ejemplos de manifiestos Kubernetes</a></li>
+            </ul>
+        </div>
+        
+        <div class="evaluation">
+            <h3>Criterios de Evaluación - Práctica 3</h3>
+            <ul>
+                <li>Aplicación ejecutándose en GKE (25%)</li>
+                <li>Configuración de CI/CD con Cloud Build (25%)</li>
+                <li>Dockerización correcta de la aplicación (20%)</li>
+                <li>Configuración de monitoreo (15%)</li>
+                <li>Documentación técnica (15%)</li>
+            </ul>
+        </div>
+        
+        <h2>Consejos para el Trabajo en Equipo</h2>
+        <ul>
+            <li>Utilizen GitHub para control de versiones y colaboración</li>
+            <li>Dividan las tareas según los roles asignados</li>
+            <li>Mantengan reuniones regulares (2-3 veces por semana)</li>
+            <li>Documenten todo el proceso y los problemas encontrados</li>
+            <li>Prueben cada componente individualmente antes de integrarlos</li>
+        </ul>
+    </div>
+    
+    <footer>
+        <p>Prácticas de Despliegue en Google Cloud - Para cursos de Computación en la Nube</p>
+        <p>© 2025 - Gakusei Neri</p>
+    </footer>
+</body>
+</html>
